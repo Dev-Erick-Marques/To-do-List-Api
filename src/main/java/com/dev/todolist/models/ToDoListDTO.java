@@ -1,6 +1,9 @@
 package com.dev.todolist.models;
 
-import lombok.ToString;
+import lombok.NonNull;
 
-public record ToDoListDTO(String Task, boolean status) {
+public record ToDoListDTO(
+        @NonNull
+        String Task,
+        boolean status) {
 }
