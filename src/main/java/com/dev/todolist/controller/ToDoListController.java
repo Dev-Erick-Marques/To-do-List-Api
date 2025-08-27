@@ -1,8 +1,7 @@
 package com.dev.todolist.controller;
 
-import com.dev.todolist.entity.ToDoList;
-import com.dev.todolist.models.ToDoListDTO;
-import com.dev.todolist.repository.ToDoListRepository;
+import com.dev.todolist.dto.ToDoListDTO;
+import com.dev.todolist.service.ToDoListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -10,21 +9,26 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ToDoListController {
-    private ToDoListDTO dto;
+
     @Autowired
-    private ToDoListRepository repository;
+    private ToDoListService service;
+
 
 
     @GetMapping("/tasks")
-    public ResponseEntity<?> getDto(){
-       return ResponseEntity.ok(repository.findAll());
+    public ResponseEntity<?> getTasks(){
+        return ResponseEntity.ok(service.findAllTasks());
     }
-
 
     @PostMapping("/tasks")
     public ResponseEntity<?> setTasks(@RequestBody @Validated ToDoListDTO dto){
-        repository.save(new ToDoList(dto));
+        service.saveTask(dto);
         return ResponseEntity.ok("Cadastrado com sucesso");
+    }
+    @DeleteMapping("/tasks/{id}")
+    public ResponseEntity<?> deleteTask(@PathVariable Long id){
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

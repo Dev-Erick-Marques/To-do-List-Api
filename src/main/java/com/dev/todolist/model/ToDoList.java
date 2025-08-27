@@ -1,6 +1,6 @@
-package com.dev.todolist.entity;
+package com.dev.todolist.model;
 
-import com.dev.todolist.models.ToDoListDTO;
+import com.dev.todolist.dto.ToDoListDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

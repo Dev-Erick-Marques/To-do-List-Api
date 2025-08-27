@@ -1,4 +1,4 @@
-package com.dev.todolist.models;
+package com.dev.todolist.dto;
 
 import lombok.NonNull;
 
